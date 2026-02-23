@@ -1,6 +1,22 @@
+import { useState } from "react";
+import type { TaskFormData } from "../types";
+
 export function TaskForm() {
 
     const TASK_PRIORITIES = ['low', 'medium', 'high'];
+
+    const [taskFormData, setTaskFormData] = useState<TaskFormData>({
+        taskTitle: '',
+        taskDescription: '',
+        taskPriority: 'medium',
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        setTaskFormData(prev => ({
+            ...prev,
+            [e.target.id]: e.target.value,
+        }));
+    }
 
     return (
         <>
@@ -12,6 +28,8 @@ export function TaskForm() {
                         id="taskTitle"
                         className="border border-slate-300 p-2 rounded-lg"
                         placeholder="My first task, Call the bank, Drink 2L of water"
+                        value={taskFormData.taskTitle}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -22,6 +40,8 @@ export function TaskForm() {
                         className="border border-slate-300 p-2 rounded-lg"
                         placeholder="Optional description"
                         rows={3}
+                        value={taskFormData.taskDescription}
+                        onChange={handleChange}
                     />
                 </div>
                  <div className="grid grid-cols-1 gap-3">
@@ -30,6 +50,8 @@ export function TaskForm() {
                         className="border border-slate-300 p-2 rounded-lg w-full bg-white"
                         id="taskPriority"
                         defaultValue="medium"
+                        value={taskFormData.taskPriority}
+                        onChange={handleChange}
                     >
                         {TASK_PRIORITIES.map((option) => (
                            <option key={option} value={option}>{option}</option>
