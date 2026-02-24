@@ -1,6 +1,12 @@
+import { useReducer } from "react"
+
 import { TaskForm } from "./components/TaskForm"
+import { taskReducer, initialState } from "./reducers/activity-reducer"
+
 
 function App() {
+
+	const [state, dispatch] = useReducer(taskReducer, initialState);
 
 return (
   	<>
@@ -15,7 +21,9 @@ return (
 		<main className="bg-gray-100 min-h-screen">
 			<section className="bg-slate-50 py-10 px-5" aria-label="Task creation form">
 				<div className="max-w-4xl mx-auto">
-					<TaskForm />
+					<TaskForm
+						dispatch={dispatch}
+					/>
 				</div>
 			</section>
 

@@ -1,7 +1,17 @@
-import { useState } from "react";
-import type { TaskFormData } from "../types";
+import { useState, type Dispatch } from "react";
+import { v4 as uuidv4 } from "uuid"
 
-export function TaskForm() {
+import type { Task, TaskFormData } from "../types";
+import type { TaskActions } from "../reducers/activity-reducer"
+
+
+type TaskFormPorps = {
+    dispatch: Dispatch<TaskActions>
+}
+
+
+
+export function TaskForm({dispatch}: TaskFormPorps) {
 
     const TASK_PRIORITIES = ['low', 'medium', 'high'];
 
@@ -18,9 +28,24 @@ export function TaskForm() {
         }));
     }
 
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const task: Task = {
+            id: uuidv4(),
+            taskTitle: taskFormData.taskTitle,
+            taskDescription: taskFormData.taskDescription,
+            taskPriority: taskFormData.taskPriority,
+            status: 'pending',
+            createdAt: new Date().toISOString()
+        }
+
+        dispatch({type: "add-task", payload: { newTask: task }});
+    }
+
     return (
         <>
-            <form className="space-y-5 bg-white shadow p-10 rounded-lg">
+            <form className="space-y-5 bg-white shadow p-10 rounded-lg" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 gap-3">
                     <label htmlFor="taskTitle" className="font-medium">Task name:</label>
                     <input
