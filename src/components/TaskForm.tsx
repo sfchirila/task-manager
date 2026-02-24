@@ -9,17 +9,17 @@ type TaskFormPorps = {
     dispatch: Dispatch<TaskActions>
 }
 
-
-
 export function TaskForm({dispatch}: TaskFormPorps) {
 
     const TASK_PRIORITIES = ['low', 'medium', 'high'];
 
-    const [taskFormData, setTaskFormData] = useState<TaskFormData>({
+    const formInitialState: TaskFormData = {
         taskTitle: '',
         taskDescription: '',
         taskPriority: 'medium',
-    });
+    }
+
+    const [taskFormData, setTaskFormData] = useState<TaskFormData>(formInitialState);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setTaskFormData(prev => ({
@@ -41,6 +41,9 @@ export function TaskForm({dispatch}: TaskFormPorps) {
         }
 
         dispatch({type: "add-task", payload: { newTask: task }});
+
+        setTaskFormData(formInitialState);
+
     }
 
     return (
