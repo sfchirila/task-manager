@@ -2,6 +2,7 @@ import { useReducer } from "react"
 
 import { TaskForm } from "./components/TaskForm"
 import { taskReducer, initialState } from "./reducers/activity-reducer"
+import TaskList from "./components/TaskList";
 
 
 function App() {
@@ -28,7 +29,9 @@ return (
 			</section>
 
 			<section className='bg-white rounded-lg border border-gray-200 p-10 mx-auto max-w-4xl' aria-label="Task list">
-				<p>Task list</p>
+				<TaskList
+					tasks={state.tasks}
+				/>
 			</section>
 		</main>
     </>
