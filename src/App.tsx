@@ -31,6 +31,7 @@ return (
 			<section className='bg-white rounded-lg border border-gray-200 p-10 mx-auto max-w-4xl' aria-label="Task list">
 				<TaskList
 					tasks={state.tasks}
+					dispatch={dispatch}
 				/>
 			</section>
 		</main>

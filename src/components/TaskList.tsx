@@ -1,10 +1,13 @@
+import { XCircleIcon } from "@heroicons/react/16/solid"
+import type { TaskActions } from "../reducers/activity-reducer"
 import type { Task } from "../types"
 
 type TaskListProps = {
-    tasks: Task[]
+    tasks: Task[],
+    dispatch: React.ActionDispatch<[action: TaskActions]>
 }
 
-export default function TaskList({tasks}: TaskListProps) {
+export default function TaskList({tasks, dispatch}: TaskListProps) {
     return (
         <>
             <h2 className="text-4xl font-bold pb-5">Task list</h2>
@@ -22,6 +25,15 @@ export default function TaskList({tasks}: TaskListProps) {
                                 <span>Created: <strong className="text-gray-900 font-medium">{new Date(task.createdAt).toLocaleDateString()}</strong></span>
                             </div>
                         </div>
+
+                        <button
+                            className="text-gray-400 hover:text-red-500 transition-colors"
+                            aria-label="Delete task"
+                            onClick={() => dispatch({ type: 'delete-task', payload: { id: task.id } })}
+                        >
+                            <XCircleIcon className="h-6 w-6" />
+                        </button>
+
                     </div>
                 ))
             }
