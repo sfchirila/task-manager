@@ -5,12 +5,11 @@ type TaskListProps = {
 }
 
 export default function TaskList({tasks}: TaskListProps) {
-
     return (
         <>
             <h2 className="text-4xl font-bold pb-5">Task list</h2>
 
-            {
+            { tasks.length === 0 ? <p className="text-center text-gray-600 py-10">No tasks created yet</p> :
                 tasks.map(task => (
                     <div key={task.id} className="p-5 bg-white mt-4 flex justify-between items-start rounded-lg border border-gray-400 shadow-lg">
                         <div className="space-y-1">

@@ -88,8 +88,9 @@ export function TaskForm({dispatch}: TaskFormPorps) {
                  </div>
                 <input
                     type="submit"
-                    className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white rounded-lg cursor-pointer"
+                    className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white rounded-lg cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"
                     value='Create task'
+                    disabled={taskFormData.taskTitle.trim() === ''}
                 />
             </form>
         </>
