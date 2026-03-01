@@ -10,8 +10,13 @@ export type TaskState = {
     tasks: Task[];
 }
 
+const getTasksFromLocalStorage = (): Task[] => {
+    const tasks = localStorage.getItem('tasks');
+    return tasks ? JSON.parse(tasks) : [];
+}
+
 export const initialState: TaskState = {
-  tasks: []
+  tasks: getTasksFromLocalStorage()
 }
 
 export const taskReducer = (state: TaskState = initialState, action: TaskActions): TaskState  => {

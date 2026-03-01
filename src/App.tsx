@@ -1,13 +1,16 @@
-import { useReducer } from "react"
+import { useEffect, useReducer } from "react"
 
 import { TaskForm } from "./components/TaskForm"
 import { taskReducer, initialState } from "./reducers/activity-reducer"
 import TaskList from "./components/TaskList";
 
-
 function App() {
 
 	const [state, dispatch] = useReducer(taskReducer, initialState);
+
+	useEffect(() => {
+    	localStorage.setItem('tasks', JSON.stringify(state.tasks))
+  	}, [state.tasks]);
 
 return (
   	<>
