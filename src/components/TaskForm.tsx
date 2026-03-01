@@ -78,7 +78,6 @@ export function TaskForm({dispatch}: TaskFormPorps) {
                     <select
                         className="border border-slate-300 p-2 rounded-lg w-full bg-white"
                         id="taskPriority"
-                        defaultValue="medium"
                         value={taskFormData.taskPriority}
                         onChange={handleChange}
                     >
