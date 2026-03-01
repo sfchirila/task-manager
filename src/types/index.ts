@@ -14,4 +14,5 @@ export type Task = {
     taskPriority: TaskPriority;
     status: TaskStatus;
     createdAt: string;
+    endAt: string;
 }

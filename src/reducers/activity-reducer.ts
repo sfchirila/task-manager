@@ -36,20 +36,24 @@ export const taskReducer = (state: TaskState = initialState, action: TaskActions
                 if (task.id !== action.payload.id) return task;
 
                 let nextStatus: TaskStatus;
+                let endAt = task.endAt;
                 switch (task.status) {
                     case 'pending':
                         nextStatus = 'in-progress'
                         break
                     case 'in-progress':
                         nextStatus = 'completed'
+                        endAt = new Date().toISOString();
                         break
                     default:
                         nextStatus = 'pending'
+                        endAt = '';
                 }
 
                 return {
                     ...task,
-                    status: nextStatus
+                    status: nextStatus,
+                    endAt: endAt
                 }
             });
 

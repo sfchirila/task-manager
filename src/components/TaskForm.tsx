@@ -37,7 +37,8 @@ export function TaskForm({dispatch}: TaskFormPorps) {
             taskDescription: taskFormData.taskDescription,
             taskPriority: taskFormData.taskPriority,
             status: 'pending',
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
+            endAt: ''
         }
 
         dispatch({type: "add-task", payload: { newTask: task }});

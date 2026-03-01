@@ -30,6 +30,7 @@ export default function TaskList({tasks, dispatch}: TaskListProps) {
                                 <span>Status: <span className={`inline-flex items-center align-baseline px-2 py-0.5 rounded-md text-sm font-medium transition-colors duration-500 bg-${statusStyles[task.status]}-100 text-${statusStyles[task.status]}-800 border border-${statusStyles[task.status]}-200`}>{task.status}</span></span>
                                 <span>Priority: <strong className="text-gray-900 font-medium">{task.taskPriority}</strong></span>
                                 <span>Created: <strong className="text-gray-900 font-medium">{new Date(task.createdAt).toLocaleDateString()}</strong></span>
+                                { task.endAt && <span>Finished: <strong className="text-gray-900 font-medium">{new Date(task.endAt).toLocaleString()}</strong></span>}
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
