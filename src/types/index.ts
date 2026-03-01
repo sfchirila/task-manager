@@ -1,5 +1,5 @@
 type TaskPriority = 'low' | 'medium' | 'high';
-type TaskStatus = 'pending' | 'in-progress' | 'completed';
+export type TaskStatus = 'pending' | 'in-progress' | 'completed';
 
 export type TaskFormData  = {
     taskTitle: string
