@@ -2,9 +2,10 @@ import type { Task } from '../types/index'
 import type { TaskStatus }  from '../types';
 
 export type TaskActions =
-{ type: 'add-task', payload: { newTask: Task }} |
-{ type: 'delete-task', payload: { id: Task['id'] }} |
-{ type: 'toggle-task-status', payload: { id: Task['id'] } };
+    { type: 'add-task', payload: { newTask: Task }} |
+    { type: 'delete-task', payload: { id: Task['id'] }} |
+    { type: 'update-task', payload: { id: Task['id'], task: Task }} |
+    { type: 'toggle-task-status', payload: { id: Task['id'] }};
 
 export type TaskState = {
     tasks: Task[];
@@ -16,7 +17,7 @@ const getTasksFromLocalStorage = (): Task[] => {
 }
 
 export const initialState: TaskState = {
-  tasks: getTasksFromLocalStorage()
+    tasks: getTasksFromLocalStorage()
 }
 
 export const taskReducer = (state: TaskState = initialState, action: TaskActions): TaskState  => {
@@ -34,6 +35,19 @@ export const taskReducer = (state: TaskState = initialState, action: TaskActions
             return {
                 ...state,
                 tasks: updateState
+            }
+
+        case 'update-task':
+            const tasks = state.tasks.map((task) => {
+                if (task.id === action.payload.id) {
+                    return action.payload.task
+                }
+
+                return task
+            })
+            return {
+                ...state,
+                tasks
             }
 
         case 'toggle-task-status':

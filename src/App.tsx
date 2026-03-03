@@ -1,12 +1,14 @@
-import { useEffect, useReducer } from "react"
+import { useEffect, useReducer, useState } from "react"
 
 import { TaskForm } from "./components/TaskForm"
 import { taskReducer, initialState } from "./reducers/activity-reducer"
 import TaskList from "./components/TaskList";
+import type { Task } from "./types";
 
 function App() {
 
 	const [state, dispatch] = useReducer(taskReducer, initialState);
+	const [editingTask, setEditingTask] = useState<Task | null>(null);
 
 	useEffect(() => {
     	localStorage.setItem('tasks', JSON.stringify(state.tasks))
@@ -26,6 +28,8 @@ return (
 			<section className="bg-slate-50 py-10 px-5" aria-label="Task creation form">
 				<div className="max-w-4xl mx-auto">
 					<TaskForm
+						editingTask={editingTask}
+						onClearEdit={() => setEditingTask(null)}
 						dispatch={dispatch}
 					/>
 				</div>
@@ -35,6 +39,7 @@ return (
 				<TaskList
 					tasks={state.tasks}
 					dispatch={dispatch}
+					setEditingTask={setEditingTask}
 				/>
 			</section>
 		</main>
