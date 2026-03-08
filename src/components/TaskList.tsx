@@ -10,6 +10,12 @@ type TaskListProps = {
 
 export default function TaskList({tasks, dispatch, setEditingTask}: TaskListProps) {
 
+    const shortByOptions = [
+        { value: 'createdAt', label: 'Creation date' },
+        { value: 'status', label: 'Status' },
+        { value: 'taskPriority', label: 'Priority' },
+    ]
+
     const statusStyles: Record<TaskStatus, string> = {
         pending: 'bg-gray-100 text-gray-800 border border-gray-200',
         'in-progress': 'bg-amber-100 text-amber-800 border border-amber-200',
@@ -18,7 +24,16 @@ export default function TaskList({tasks, dispatch, setEditingTask}: TaskListProp
 
     return (
         <>
-            <h2 className="text-4xl font-bold pb-5">Task list</h2>
+            <h2 className="text-4xl font-bold pb-3">Task list</h2>
+
+            <form className="flex justify-end items-center pb-2">
+                <label htmlFor="sort" className="font-medium">Sort by:</label>
+                <select name="sort" id="sort" className="border border-slate-300 p-2 rounded-lg bg-white w-50 ml-2">
+                    {shortByOptions.map((option) => (
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                    ))}
+                </select>
+            </form>
 
             { tasks.length === 0 ? <p className="text-center text-gray-600 py-10">No tasks created yet</p> :
                 tasks.map(task => (
