@@ -17,6 +17,7 @@ export function TaskFilter({setFilteredTasks} : TaskFilterProps) {
 
 	const [filterFormData, setFilterFormData] = useState(formInitialState);
 
+	let isFilterActive = filterFormData.taskName != '' || filterFormData.priority != 'all' || filterFormData.status != 'all';
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
 		setFilterFormData((prev) => (
@@ -83,9 +84,18 @@ export function TaskFilter({setFilteredTasks} : TaskFilterProps) {
 					type="submit"
 					value="Filter Tasks"
 					id="filterButton"
-					className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white rounded-lg cursor-pointer"
+					className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white rounded-lg cursor-pointer disabled:opacity-20 disabled:cursor-not-allowed"
+					disabled={!isFilterActive}
 				/>
-
+				{isFilterActive && (
+					<button
+						type="button"
+						className="bg-red-800 hover:bg-red-900 w-full p-2 font-bold uppercase text-white rounded-lg cursor-pointer"
+						onClick={() => { setFilterFormData(formInitialState); setFilteredTasks(formInitialState); }}
+					>
+						Clear Filters
+					</button>
+				)}
 			</form>
         </>
     )
