@@ -1,4 +1,4 @@
-import { useEffect, useState, type Dispatch } from "react";
+import { useEffect, useRef, useState, type Dispatch } from "react";
 import { v4 as uuidv4 } from "uuid"
 
 import type { Task, TaskFormData } from "../types";
@@ -21,6 +21,8 @@ export function TaskForm({ editingTask, onClearEdit, dispatch }: TaskFormPorps) 
         taskPriority: 'medium',
     }
 
+    const inputRef = useRef<HTMLInputElement>(null);
+
     useEffect(() => {
         if (editingTask) {
             setTaskFormData({
@@ -28,6 +30,7 @@ export function TaskForm({ editingTask, onClearEdit, dispatch }: TaskFormPorps) 
                 taskDescription: editingTask.taskDescription,
                 taskPriority: editingTask.taskPriority
             });
+            inputRef.current?.focus();
         } else {
             setTaskFormData(formInitialState);
         }
@@ -73,6 +76,7 @@ export function TaskForm({ editingTask, onClearEdit, dispatch }: TaskFormPorps) 
                     <label htmlFor="taskTitle" className="font-medium">Task name:</label>
                     <input
                         type="text"
+                        ref={inputRef}
                         id="taskTitle"
                         className="border border-slate-300 p-2 rounded-lg"
                         placeholder="My first task, Call the bank, Drink 2L of water"
