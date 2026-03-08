@@ -1,14 +1,15 @@
 import { PencilSquareIcon, XCircleIcon } from "@heroicons/react/16/solid"
 import type { TaskActions } from "../reducers/activity-reducer"
-import type { Task, TaskStatus } from "../types"
+import type { SortByOption, Task, TaskStatus } from "../types"
 
 type TaskListProps = {
     tasks: Task[],
     dispatch: React.ActionDispatch<[action: TaskActions]>,
-    setEditingTask: React.Dispatch<React.SetStateAction<Task | null>>
+    setEditingTask: React.Dispatch<React.SetStateAction<Task | null>>,
+    setSortBy: React.Dispatch<React.SetStateAction<SortByOption>>
 }
 
-export default function TaskList({tasks, dispatch, setEditingTask}: TaskListProps) {
+export function TaskList({tasks, dispatch, setEditingTask, setSortBy}: TaskListProps) {
 
     const shortByOptions = [
         { value: 'createdAt', label: 'Creation date' },
@@ -22,13 +23,17 @@ export default function TaskList({tasks, dispatch, setEditingTask}: TaskListProp
         completed: 'bg-green-100 text-green-800 border border-green-200',
     };
 
+    const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+       setSortBy(e.target.value as SortByOption);
+    }
+
     return (
         <>
             <h2 className="text-4xl font-bold pb-3">Task list</h2>
 
             <form className="flex justify-end items-center pb-2">
                 <label htmlFor="sort" className="font-medium">Sort by:</label>
-                <select name="sort" id="sort" className="border border-slate-300 p-2 rounded-lg bg-white w-50 ml-2">
+                <select name="sort" id="sort" className="border border-slate-300 p-2 rounded-lg bg-white w-50 ml-2" onChange={handleSortChange}>
                     {shortByOptions.map((option) => (
                         <option key={option.value} value={option.value}>{option.label}</option>
                     ))}
