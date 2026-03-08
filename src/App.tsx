@@ -4,6 +4,7 @@ import { TaskForm } from "./components/TaskForm"
 import { taskReducer, initialState } from "./reducers/activity-reducer"
 import TaskList from "./components/TaskList";
 import type { Task } from "./types";
+import { TaskFilter } from "./components/TaskFilter";
 
 function App() {
 
@@ -32,6 +33,12 @@ return (
 						onClearEdit={() => setEditingTask(null)}
 						dispatch={dispatch}
 					/>
+				</div>
+			</section>
+
+			<section className="bg-slate-50 py-10 px-5" aria-label="Filters">
+				<div className="max-w-4xl mx-auto">
+					<TaskFilter />
 				</div>
 			</section>
 
