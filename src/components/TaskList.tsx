@@ -1,5 +1,5 @@
 import { PencilSquareIcon, XCircleIcon } from "@heroicons/react/16/solid"
-import type { TaskActions } from "../reducers/activity-reducer"
+import type { TaskActions } from "../reducers/task-reducer"
 import type { SortByOption, Task, TaskStatus } from "../types"
 
 type TaskListProps = {

@@ -2,7 +2,7 @@ import { useEffect, useState, type Dispatch } from "react";
 import { v4 as uuidv4 } from "uuid"
 
 import type { Task, TaskFormData } from "../types";
-import type { TaskActions } from "../reducers/activity-reducer"
+import type { TaskActions } from "../reducers/task-reducer"
 
 
 type TaskFormPorps = {

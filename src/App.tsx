@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from "react"
 
 import { TaskForm } from "./components/TaskForm"
-import { taskReducer, initialState } from "./reducers/activity-reducer"
+import { taskReducer, initialState } from "./reducers/task-reducer"
 import { TaskList } from "./components/TaskList";
 import { TaskFilter } from "./components/TaskFilter";
 import { useFilteredTasks } from './hooks/useFilteredTasks'
