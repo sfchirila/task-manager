@@ -35,7 +35,7 @@ return (
 		</header>
 
 		<main className="bg-gray-100 min-h-screen">
-			<section className="bg-slate-50 py-10 px-5" aria-label="Task creation form">
+			<section className="bg-slate-50 pt-10 px-5" aria-label="Task creation form">
 				<div className="max-w-4xl mx-auto">
 					<TaskForm
 						editingTask={editingTask}
