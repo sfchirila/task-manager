@@ -16,3 +16,9 @@ export type Task = {
     createdAt: string;
     endAt: string;
 }
+
+export type TaskFilters = {
+    taskName: string;
+    status: TaskStatus | 'all';
+    priority: TaskPriority | 'all';
+}

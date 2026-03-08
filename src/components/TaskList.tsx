@@ -1,13 +1,14 @@
-import { XCircleIcon } from "@heroicons/react/16/solid"
+import { PencilSquareIcon, XCircleIcon } from "@heroicons/react/16/solid"
 import type { TaskActions } from "../reducers/activity-reducer"
 import type { Task, TaskStatus } from "../types"
 
 type TaskListProps = {
     tasks: Task[],
-    dispatch: React.ActionDispatch<[action: TaskActions]>
+    dispatch: React.ActionDispatch<[action: TaskActions]>,
+    setEditingTask: React.Dispatch<React.SetStateAction<Task | null>>
 }
 
-export default function TaskList({tasks, dispatch}: TaskListProps) {
+export default function TaskList({tasks, dispatch, setEditingTask}: TaskListProps) {
 
     const statusStyles: Record<TaskStatus, string> = {
         pending: 'bg-gray-100 text-gray-800 border border-gray-200',
@@ -41,6 +42,16 @@ export default function TaskList({tasks, dispatch}: TaskListProps) {
                                 {task.status === 'pending' && 'Start'}
                                 {task.status === 'in-progress' && 'Complete'}
                                 {task.status === 'completed' && 'Reopen'}
+                            </button>
+
+                            <button
+                                className="text-gray-400 hover:text-red-500 transition-colors"
+                                aria-label="Update task"
+                                onClick={() => setEditingTask(task)}
+                            >
+                                <PencilSquareIcon
+                                    className="h-6 w-6"
+                                />
                             </button>
 
                             <button
