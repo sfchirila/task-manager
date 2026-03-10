@@ -56,13 +56,13 @@ return (
 				</div>
 			</section>
 
-			<section className='bg-white rounded-lg border border-gray-200 p-10 mx-auto max-w-4xl' aria-label="Task list">
-				<TaskList
-					tasks={filtered}
-					dispatch={dispatch}
-					setEditingTask={setEditingTask}
-					setSortBy={setSortBy}
-				/>
+			<section className='bg-slate-50 pb-10 px-5' aria-label="Task list">
+					<TaskList
+						tasks={filtered}
+						dispatch={dispatch}
+						setEditingTask={setEditingTask}
+						setSortBy={setSortBy}
+					/>
 			</section>
 		</main>
     </>
