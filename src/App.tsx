@@ -1,12 +1,12 @@
 import { useEffect, useReducer, useState } from "react"
 
 import { TaskForm } from "./components/TaskForm"
-import { taskReducer, initialState } from "./reducers/activity-reducer"
-import TaskList from "./components/TaskList";
+import { taskReducer, initialState } from "./reducers/task-reducer"
+import { TaskList } from "./components/TaskList";
 import { TaskFilter } from "./components/TaskFilter";
 import { useFilteredTasks } from './hooks/useFilteredTasks'
 
-import type { Task, TaskFilters } from "./types";
+import type { SortByOption, Task, TaskFilters } from "./types";
 
 function App() {
 
@@ -17,8 +17,9 @@ function App() {
 		status: 'all',
 		priority: 'all'
 	});
+	const [sortBy, setSortBy] = useState<SortByOption>('createdAt');
 
-	const { filtered } = useFilteredTasks({tasks: state.tasks, filters: filteredTasks});
+	const { filtered } = useFilteredTasks({tasks: state.tasks, filters: filteredTasks, sortBy});
 
 	useEffect(() => {
     	localStorage.setItem('tasks', JSON.stringify(state.tasks))
@@ -58,6 +59,7 @@ return (
 					tasks={filtered}
 					dispatch={dispatch}
 					setEditingTask={setEditingTask}
+					setSortBy={setSortBy}
 				/>
 			</section>
 		</main>

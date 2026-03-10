@@ -22,3 +22,5 @@ export type TaskFilters = {
     status: TaskStatus | 'all';
     priority: TaskPriority | 'all';
 }
+
+export type SortByOption = 'createdAt' | 'status' | 'taskPriority';
