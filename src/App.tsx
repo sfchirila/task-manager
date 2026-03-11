@@ -7,6 +7,7 @@ import { TaskFilter } from "./components/TaskFilter";
 import { useFilteredTasks } from './hooks/useFilteredTasks'
 
 import type { SortByOption, Task, TaskFilters } from "./types";
+import { UserIcon } from "@heroicons/react/16/solid";
 
 function App() {
 
@@ -27,12 +28,13 @@ function App() {
 
 return (
   	<>
-		<header className="bg-slate-800 py-3">
-			<div className="max-w-4xl mx-auto flex justify-center">
-			<h1 className="text-center text-lg font-bold text-white uppercase">
-				Task Manager
-			</h1>
-			</div>
+		<header className="bg-slate-800 relative py-3 px-4">
+			<h1 className="text-center text-lg font-bold text-white uppercase tracking-wide">Task Manager</h1>
+
+			<a href="/login" className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 text-sm font-medium text-white hover:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded">
+				<UserIcon className="w-5 h-5" aria-hidden="true" />
+				<span>Login</span>
+			</a>
 		</header>
 
 		<main className="bg-gray-100 min-h-screen">
@@ -54,13 +56,13 @@ return (
 				</div>
 			</section>
 
-			<section className='bg-white rounded-lg border border-gray-200 p-10 mx-auto max-w-4xl' aria-label="Task list">
-				<TaskList
-					tasks={filtered}
-					dispatch={dispatch}
-					setEditingTask={setEditingTask}
-					setSortBy={setSortBy}
-				/>
+			<section className='bg-slate-50 pb-10 px-5' aria-label="Task list">
+					<TaskList
+						tasks={filtered}
+						dispatch={dispatch}
+						setEditingTask={setEditingTask}
+						setSortBy={setSortBy}
+					/>
 			</section>
 		</main>
     </>

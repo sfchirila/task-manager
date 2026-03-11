@@ -33,7 +33,7 @@ export function TaskFilter({setFilteredTasks} : TaskFilterProps) {
 
     return (
         <>
-			<form className="space-y-5 bg-white shadow p-10 rounded-lg" onSubmit={handleSubmit}>
+			<form className="space-y-5 bg-white p-10 rounded-lg border border-slate-200 shadow-sm" onSubmit={handleSubmit}>
 				<h2 className="text-xl font-bold">Filter Tasks</h2>
 				<div className="flex gap-6 w-full">
 					<div className="flex flex-col gap-2 w-1/3">
