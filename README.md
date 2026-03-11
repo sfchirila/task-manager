@@ -2,8 +2,6 @@
 
 A modern **Task Manager application** built with **React and TypeScript** that helps users create, manage and organize tasks efficiently.
 
-This project focuses on **clean architecture**, **state management with reducers**, reusable components and good **UX practices**.
-
 ---
 
 ## 🚀 Tech Stack
